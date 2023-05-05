@@ -15,9 +15,10 @@ public static class Task_dbEndpoints
 
         group.MapGet("/", async ([FromServices] Dat154oblig4Context db) =>
         {
+
             return await db.Tasks.ToListAsync();
         })
-        .WithName("GetAllTasks")
+        .WithName("GetAllTasks").AllowAnonymous()
         .WithOpenApi();
 
         group.MapGet("/{id}", async Task<Results<Ok<Task_db>, NotFound>> (int id, [FromServices] Dat154oblig4Context db) =>
